@@ -11,3 +11,10 @@
 /tp @s 10915 124 99994
 /effect give @e minecraft:glowing infinite
 /summon mushroomies:mini_mushroomie
+/effect clear @e minecraft:glowing
+/time set day
+/summon mushroomies:mini_mushroomie
+/locate biome minecraft:cherry_grove
+/tp @s 10584 81 98923
+/tp @s 10915 124 99994
+/summon mushroomies:mini_mushroomie

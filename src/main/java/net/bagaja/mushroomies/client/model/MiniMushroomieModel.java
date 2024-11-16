@@ -96,13 +96,35 @@ public class MiniMushroomieModel extends HierarchicalModel<MiniMushroomie> {
         this.head.xRot = headPitch * ((float)Math.PI / 180F);
         this.head.yRot = netHeadYaw * ((float)Math.PI / 180F);
 
-        // Apply idle animation when standing still
-        if (entity.getDeltaMovement().horizontalDistanceSqr() < 1.0E-7D) {
-            applyIdleAnimation(ageInTicks);
-        } else {
-            // Apply walking animation when moving
+        // Apply animations based on state
+        if (entity.danceAnimationState.isStarted()) {
+            applyDanceAnimation(ageInTicks);
+        } else if (entity.getDeltaMovement().horizontalDistanceSqr() > 1.0E-7D) {
             applyWalkingAnimation(ageInTicks);
+        } else {
+            applyIdleAnimation(ageInTicks);
         }
+    }
+
+    private void applyDanceAnimation(float ageInTicks) {
+        float time = ageInTicks * 0.1F;
+        float bounce = Mth.sin(time * 2.0F) * 0.05F;
+
+        // Bouncing movement
+        this.minimushroomi.y = 18.0F + bounce * 20.0F;
+
+        // Head bobbing
+        this.head.xRot = (float)Math.toRadians(-12.5F);
+        this.head.x = -1.0F;
+
+        // Arm movement
+        float armAngle = (float)Math.toRadians(-122.5F);
+        float armWave = Mth.sin(time * 4.0F) * (float)Math.PI / 18.0F;
+
+        this.leftArm.zRot = armAngle + armWave;
+        this.rightArm.zRot = armAngle - armWave;
+        this.leftArm.y = -1.0F;
+        this.rightArm.y = -1.0F;
     }
 
     private void applyIdleAnimation(float ageInTicks) {

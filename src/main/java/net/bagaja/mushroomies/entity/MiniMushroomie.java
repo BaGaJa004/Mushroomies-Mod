@@ -16,6 +16,8 @@ public class MiniMushroomie extends Animal {
     public final AnimationState walkAnimationState = new AnimationState();
     public final AnimationState danceAnimationState = new AnimationState();
 
+    private static final double DANCE_RADIUS = 5.0D; // Distance in blocks
+
     public MiniMushroomie(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
     }
@@ -25,11 +27,28 @@ public class MiniMushroomie extends Animal {
         super.tick();
 
         if (this.level().isClientSide()) {
+            // Check for nearby players holding emeralds
+            boolean shouldDance = false;
+            for (Player player : this.level().getEntitiesOfClass(Player.class,
+                    this.getBoundingBox().inflate(DANCE_RADIUS))) {
+                if (player.getMainHandItem().is(net.minecraft.world.item.Items.EMERALD) ||
+                        player.getOffhandItem().is(net.minecraft.world.item.Items.EMERALD)) {
+                    shouldDance = true;
+                    break;
+                }
+            }
+
             // Update animation states
-            if (this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-7D) {
+            if (shouldDance) {
+                this.walkAnimationState.stop();
+                this.idleAnimationState.stop();
+                this.danceAnimationState.startIfStopped(this.tickCount);
+            } else if (this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-7D) {
+                this.danceAnimationState.stop();
                 this.idleAnimationState.stop();
                 this.walkAnimationState.startIfStopped(this.tickCount);
             } else {
+                this.danceAnimationState.stop();
                 this.walkAnimationState.stop();
                 this.idleAnimationState.startIfStopped(this.tickCount);
             }
