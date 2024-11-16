@@ -2,7 +2,8 @@
   "type": "forge:add_spawns",
   "biomes": [
     "mushroom_fields",
-    "cherry_grove"
+    "cherry_grove",
+    "minecraft:dark_forest"
   ],
   "spawners": {
     "type": "mushroomies:minitrader",

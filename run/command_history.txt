@@ -26,3 +26,13 @@
 /summon mushroomies:minitrader
 /give @p mushroomies:minitrader_spawn_egg
 /summon mushroomies:minitrader
+/locate biome minecraft:cherry_grove
+/tp @s 10605 80 98922
+/effect clear @e minecraft:glowing
+/effect give @e[ type= mushroomies:mini_mushroomie ] minecraft:glowing infinite
+/locate biome minecraft:mushroom_fields
+/tp @s 10913 99 99988
+/effect give @e[ type= mushroomies:mini_mushroomie ] minecraft:glowing infinite
+/tp Dev 20000 70 200000
+/locate biome minecraft:mushroom_fields
+/tp @s 21152 70 203968

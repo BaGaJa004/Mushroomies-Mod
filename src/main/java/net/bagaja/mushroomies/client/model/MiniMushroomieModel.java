@@ -132,9 +132,8 @@ public class MiniMushroomieModel extends HierarchicalModel<MiniMushroomie> {
     }
 
     private void applyWalkingAnimation(float ageInTicks) {
-        float time = ageInTicks * 0.1F;
-        float legAngle = Mth.sin(time) * (float)Math.PI / 10.0F;
-        float armAngle = Mth.sin(time) * (float)Math.PI / 10.0F;
+        float legAngle = Mth.sin(ageInTicks) * (float)Math.PI / 10.0F;
+        float armAngle = Mth.sin(ageInTicks) * (float)Math.PI / 10.0F;
 
         this.leftLeg.zRot = -legAngle;
         this.rightLeg.zRot = legAngle;
