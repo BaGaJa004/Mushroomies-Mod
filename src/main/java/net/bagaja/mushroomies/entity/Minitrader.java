@@ -50,16 +50,23 @@ public class Minitrader extends AbstractVillager {
     protected void updateTrades() {
         MerchantOffers offers = this.getOffers();
 
-        // Add some example trades
+        // Trade 4 brown mushrooms for a wooden axe
         offers.add(new MerchantOffer(
-                new ItemStack(Items.EMERALD, 1),
-                new ItemStack(Items.APPLE, 5),
+                new ItemStack(Items.BROWN_MUSHROOM, 4),
+                new ItemStack(Items.WOODEN_AXE, 1),
                 10, 2, 0.05F));
 
+        // Trade 2 red mushrooms for an oak sapling
         offers.add(new MerchantOffer(
-                new ItemStack(Items.EMERALD, 2),
-                new ItemStack(Items.BREAD, 3),
-                10, 3, 0.05F));
+                new ItemStack(Items.RED_MUSHROOM, 2),
+                new ItemStack(Items.OAK_SAPLING, 1),
+                10, 2, 0.05F));
+
+        // Trade 32 brown mushrooms for 16 oak planks
+        offers.add(new MerchantOffer(
+                new ItemStack(Items.BROWN_MUSHROOM, 32),
+                new ItemStack(Items.OAK_PLANKS, 16),
+                10, 2, 0.05F));
     }
 
 

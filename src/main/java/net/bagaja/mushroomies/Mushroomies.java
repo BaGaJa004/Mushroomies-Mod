@@ -33,24 +33,24 @@ public class Mushroomies {
                             .sized(0.6f, 1.0f)
                             .build(MOD_ID + ":mini_mushroomie"));
 
-    public static final RegistryObject<Item> MINI_MUSHROOMIE_SPAWN_EGG =
-            ITEMS.register("mini_mushroomie_spawn_egg",
-                    () -> new ForgeSpawnEggItem(MINI_MUSHROOMIE,
-                            0x964B00,
-                            0xFF69B4,
-                            new Item.Properties()));
-
     public static final RegistryObject<EntityType<Minitrader>> MINITRADER =
             ENTITY_TYPES.register("minitrader",
                     () -> EntityType.Builder.of(Minitrader::new, MobCategory.CREATURE)
                             .sized(0.6f, 1.0f)
                             .build(MOD_ID + ":minitrader"));
 
+    public static final RegistryObject<Item> MINI_MUSHROOMIE_SPAWN_EGG =
+            ITEMS.register("mini_mushroomie_spawn_egg",
+                    () -> new ForgeSpawnEggItem(MINI_MUSHROOMIE,
+                            0xFF0000, // Red
+                            0xFFFFFF, // White
+                            new Item.Properties()));
+
     public static final RegistryObject<Item> MINITRADER_SPAWN_EGG =
             ITEMS.register("minitrader_spawn_egg",
                     () -> new ForgeSpawnEggItem(MINITRADER,
-                            0x946B2D,
-                            0xFFFFFF,
+                            0x8B4513, // Green
+                            0x00FF00, // Brown
                             new Item.Properties()));
 
     public Mushroomies() {
