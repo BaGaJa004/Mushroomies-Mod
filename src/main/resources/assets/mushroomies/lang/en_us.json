@@ -1,3 +1,6 @@
 {
-  "entity.mushroomies.mini_mushroomie": "Mini Mushroomie"
+  "item.mushroomies.mini_mushroomie_spawn_egg": "Mini Mushroomie Spawn Egg",
+  "entity.mushroomies.mini_mushroomie": "Mini Mushroomie",
+  "item.mushroomies.minitrader_spawn_egg": "Minitrader Spawn Egg",
+  "entity.mushroomies.minitrader": "Minitrader"
 }

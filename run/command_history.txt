@@ -18,3 +18,11 @@
 /tp @s 10584 81 98923
 /tp @s 10915 124 99994
 /summon mushroomies:mini_mushroomie
+/time set day
+/gamerule doDaylightCycle false
+/give @p mushroomies:mini_mushroomie_spawn_egg 1
+/summon mushroomies:mi
+/summon mushroomies:
+/summon mushroomies:minitrader
+/give @p mushroomies:minitrader_spawn_egg
+/summon mushroomies:minitrader

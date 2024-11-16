@@ -7,8 +7,8 @@
   ],
   "spawners": {
     "type": "mushroomies:mini_mushroomie",
-    "weight": 20,
+    "weight": 18,
     "minCount": 2,
-    "maxCount": 4
+    "maxCount": 7
   }
 }

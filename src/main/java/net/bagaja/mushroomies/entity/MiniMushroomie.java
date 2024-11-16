@@ -16,7 +16,7 @@ public class MiniMushroomie extends Animal {
     public final AnimationState walkAnimationState = new AnimationState();
     public final AnimationState danceAnimationState = new AnimationState();
 
-    private static final double DANCE_RADIUS = 5.0D; // Distance in blocks
+    private static final double DANCE_RADIUS = 2.0D; // Distance in blocks
 
     public MiniMushroomie(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);

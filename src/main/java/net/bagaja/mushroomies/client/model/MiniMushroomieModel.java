@@ -108,14 +108,10 @@ public class MiniMushroomieModel extends HierarchicalModel<MiniMushroomie> {
 
     private void applyDanceAnimation(float ageInTicks) {
         float time = ageInTicks * 0.1F;
-        float bounce = Mth.sin(time * 2.0F) * 0.05F;
+        float bounce = Mth.sin(time * 2.0F) * 0.1F; // Reduced bounce effect
 
-        // Bouncing movement
-        this.minimushroomi.y = 18.0F + bounce * 20.0F;
-
-        // Head bobbing
-        this.head.xRot = (float)Math.toRadians(-12.5F);
-        this.head.x = -1.0F;
+        // Set the Y position for dance without deep sinking
+        this.minimushroomi.y = 18.0F + bounce; // Adjust this value to control the height
 
         // Arm movement
         float armAngle = (float)Math.toRadians(-122.5F);

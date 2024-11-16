@@ -1,0 +1,13 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "mushroom_fields",
+    "cherry_grove"
+  ],
+  "spawners": {
+    "type": "mushroomies:minitrader",
+    "weight": 8,
+    "minCount": 1,
+    "maxCount": 3
+  }
+}
