@@ -1,0 +1,13 @@
+/locate biome minecraft:mushroom_fields
+/tp @s 1576 80 1529
+/teleport Dev 10000 64 100000
+/locate biome minecraft:mushroom_fields
+/tp @s 10896 64 100000
+/locate biome minecraft:cherry_grove
+/tp @s 10603 83 98913
+/effect give Dev minecraft:glowing infinite
+/effect give @e minecraft:glowing infinite
+/locate biome minecraft:mushroom_fields
+/tp @s 10915 124 99994
+/effect give @e minecraft:glowing infinite
+/summon mushroomies:mini_mushroomie
