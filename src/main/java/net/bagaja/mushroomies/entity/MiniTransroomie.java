@@ -1,5 +1,6 @@
 package net.bagaja.mushroomies.entity;
 
+import net.bagaja.mushroomies.Mushroomies;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -7,6 +8,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.AgeableMob;
@@ -91,5 +93,10 @@ public class MiniTransroomie extends Animal {
     @Override
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
         return null;
+    }
+
+    @Override
+    public ItemStack getPickResult() {
+        return new ItemStack(Mushroomies.MINI_MUSHROOMIE_SPAWN_EGG.get());
     }
 }

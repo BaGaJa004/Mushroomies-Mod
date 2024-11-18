@@ -70,3 +70,7 @@ public class Mushroomies {
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientSetup::init);
     }
 }
+
+// changing trader inv design
+// adding mushroom wood
+// adding new houses for them
