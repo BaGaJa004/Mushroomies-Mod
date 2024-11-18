@@ -36,3 +36,5 @@
 /tp Dev 20000 70 200000
 /locate biome minecraft:mushroom_fields
 /tp @s 21152 70 203968
+/summon mushroomies:mini_transroomie
+/kill @e[ type= mushroomies:mini_mushroomie ]

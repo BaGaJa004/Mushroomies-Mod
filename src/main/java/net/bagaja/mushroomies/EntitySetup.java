@@ -1,6 +1,7 @@
 package net.bagaja.mushroomies;
 
 import net.bagaja.mushroomies.entity.MiniMushroomie;
+import net.bagaja.mushroomies.entity.MiniTransroomie;
 import net.bagaja.mushroomies.entity.Minitrader;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -12,5 +13,6 @@ public class EntitySetup {
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(Mushroomies.MINI_MUSHROOMIE.get(), MiniMushroomie.createAttributes().build());
         event.put(Mushroomies.MINITRADER.get(), Minitrader.createAttributes().build());
+        event.put(Mushroomies.MINI_TRANSROOMIE.get(), MiniTransroomie.createAttributes().build());
     }
 }

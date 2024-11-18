@@ -93,7 +93,6 @@ public class MiniMushroomieModel extends HierarchicalModel<MiniMushroomie> {
         this.root().getAllParts().forEach(ModelPart::resetPose);
 
         // Head rotations
-        this.head.xRot = headPitch * ((float)Math.PI / 180F);
         this.head.yRot = netHeadYaw * ((float)Math.PI / 180F);
 
         // Apply animations based on state
@@ -107,11 +106,11 @@ public class MiniMushroomieModel extends HierarchicalModel<MiniMushroomie> {
     }
 
     private void applyDanceAnimation(float ageInTicks) {
-        float time = ageInTicks * 0.1F;
-        float bounce = Mth.sin(time * 2.0F) * 0.1F; // Reduced bounce effect
+        float time = ageInTicks * 0.2F;
+        float bounce = Mth.sin(time * 2.0F) * 4.0F; // Reduced bounce effect
 
         // Set the Y position for dance without deep sinking
-        this.minimushroomi.y = 18.0F + bounce; // Adjust this value to control the height
+        this.minimushroomi.y = 13.0F + bounce;
 
         // Arm movement
         float armAngle = (float)Math.toRadians(-122.5F);
@@ -124,7 +123,7 @@ public class MiniMushroomieModel extends HierarchicalModel<MiniMushroomie> {
     }
 
     private void applyIdleAnimation(float ageInTicks) {
-        float time = ageInTicks * 0.1F;
+        float time = ageInTicks * 0.2F;
         float armAngle = Mth.sin(time) * (float)Math.PI / 5.5F;
 
         this.leftArm.zRot = -armAngle;

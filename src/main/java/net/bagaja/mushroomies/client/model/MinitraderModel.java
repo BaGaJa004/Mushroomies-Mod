@@ -89,7 +89,6 @@ public class MinitraderModel extends HierarchicalModel<Minitrader> {
         this.root().getAllParts().forEach(ModelPart::resetPose);
 
         // Head rotation
-        this.head.xRot = headPitch * ((float)Math.PI / 180F);
         this.head.yRot = netHeadYaw * ((float)Math.PI / 180F);
 
         // Animation based on movement

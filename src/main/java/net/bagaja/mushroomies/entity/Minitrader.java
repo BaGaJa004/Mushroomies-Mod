@@ -1,5 +1,7 @@
 package net.bagaja.mushroomies.entity;
 
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
@@ -16,6 +18,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class Minitrader extends AbstractVillager {
@@ -92,5 +95,32 @@ public class Minitrader extends AbstractVillager {
 
     public SimpleContainer getInventory() {
         return this.inventory;
+    }
+
+    @Override
+    public void playSound(SoundEvent sound) {
+        // Prevent all villager-related sounds
+        if (sound != SoundEvents.VILLAGER_TRADE &&
+                sound != SoundEvents.VILLAGER_YES &&
+                sound != SoundEvents.VILLAGER_NO &&
+                sound != SoundEvents.VILLAGER_CELEBRATE &&
+                sound != SoundEvents.VILLAGER_WORK_FLETCHER) {
+            super.playSound(sound);
+        }
+    }
+
+    @Override
+    protected SoundEvent getTradeUpdatedSound(boolean isEmpty) {
+        return null;  // Prevents the trade update sound
+    }
+
+    @Override
+    public @NotNull SoundEvent getNotifyTradeSound() {
+        return null;  // Prevents the trade notification sound
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return null;  // Prevents ambient villager sounds
     }
 }

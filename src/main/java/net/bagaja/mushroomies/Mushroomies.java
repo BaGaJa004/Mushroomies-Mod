@@ -2,6 +2,7 @@ package net.bagaja.mushroomies;
 
 import net.bagaja.mushroomies.client.ClientSetup;
 import net.bagaja.mushroomies.entity.MiniMushroomie;
+import net.bagaja.mushroomies.entity.MiniTransroomie;
 import net.bagaja.mushroomies.entity.Minitrader;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -38,6 +39,12 @@ public class Mushroomies {
                     () -> EntityType.Builder.of(Minitrader::new, MobCategory.CREATURE)
                             .sized(0.6f, 1.0f)
                             .build(MOD_ID + ":minitrader"));
+
+    public static final RegistryObject<EntityType<MiniTransroomie>> MINI_TRANSROOMIE =
+            ENTITY_TYPES.register("mini_transroomie",
+                    () -> EntityType.Builder.of(MiniTransroomie::new, MobCategory.CREATURE)
+                            .sized(0.6f, 1.0f)
+                            .build(MOD_ID + ":mini_transroomie"));
 
     public static final RegistryObject<Item> MINI_MUSHROOMIE_SPAWN_EGG =
             ITEMS.register("mini_mushroomie_spawn_egg",

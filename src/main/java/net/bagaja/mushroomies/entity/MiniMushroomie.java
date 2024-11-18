@@ -16,7 +16,8 @@ public class MiniMushroomie extends Animal {
     public final AnimationState walkAnimationState = new AnimationState();
     public final AnimationState danceAnimationState = new AnimationState();
 
-    private static final double DANCE_RADIUS = 2.0D; // Distance in blocks
+    private static final double DANCE_RADIUS = 2.0D;
+    private boolean isDancing = false;
 
     public MiniMushroomie(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
@@ -38,19 +39,30 @@ public class MiniMushroomie extends Animal {
                 }
             }
 
-            // Update animation states
+            // Update animation states and movement
             if (shouldDance) {
+                if (!isDancing) {
+                    isDancing = true;
+                    // Stop all movement when starting to dance
+                    this.setDeltaMovement(0, this.getDeltaMovement().y, 0);
+                }
                 this.walkAnimationState.stop();
                 this.idleAnimationState.stop();
                 this.danceAnimationState.startIfStopped(this.tickCount);
-            } else if (this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-7D) {
-                this.danceAnimationState.stop();
-                this.idleAnimationState.stop();
-                this.walkAnimationState.startIfStopped(this.tickCount);
+
+                // Cancel horizontal movement while dancing
+                this.setDeltaMovement(0, this.getDeltaMovement().y, 0);
             } else {
-                this.danceAnimationState.stop();
-                this.walkAnimationState.stop();
-                this.idleAnimationState.startIfStopped(this.tickCount);
+                isDancing = false;
+                if (this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-7D) {
+                    this.danceAnimationState.stop();
+                    this.idleAnimationState.stop();
+                    this.walkAnimationState.startIfStopped(this.tickCount);
+                } else {
+                    this.danceAnimationState.stop();
+                    this.walkAnimationState.stop();
+                    this.idleAnimationState.startIfStopped(this.tickCount);
+                }
             }
         }
     }
@@ -58,12 +70,21 @@ public class MiniMushroomie extends Animal {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D) {
+            @Override
+            public boolean canUse() {
+                return !isDancing && super.canUse();
+            }
+        });
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0D) {
+            @Override
+            public boolean canUse() {
+                return !isDancing && super.canUse();
+            }
+        });
         this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
     }
-
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 10.0D)
