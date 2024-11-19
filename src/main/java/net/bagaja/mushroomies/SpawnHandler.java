@@ -11,12 +11,13 @@ public class SpawnHandler {
     @SubscribeEvent
     public static void onEntitySpawn(EntityJoinLevelEvent event) {
         Entity entity = event.getEntity();
-        if (entity.getType() == Mushroomies.MINI_MUSHROOMIE.get()) {
-            if (entity.level().getRandom().nextFloat() < 0.05f) { // 5% chance
-                MiniTransroomie transroomie = Mushroomies.MINI_TRANSROOMIE.get()
-                        .create(entity.level());
+        if (!event.getLevel().isClientSide() && entity.getType() == Mushroomies.MINI_MUSHROOMIE.get()) {
+            if (entity.level().getRandom().nextFloat() < 0.05f) {
+                MiniTransroomie transroomie = Mushroomies.MINI_TRANSROOMIE.get().create(entity.level());
                 if (transroomie != null) {
                     transroomie.moveTo(entity.getX(), entity.getY(), entity.getZ());
+                    transroomie.setYRot(entity.getYRot());
+                    transroomie.setXRot(entity.getXRot());
                     entity.level().addFreshEntity(transroomie);
                     entity.discard(); // Remove the original mini mushroomie
                 }

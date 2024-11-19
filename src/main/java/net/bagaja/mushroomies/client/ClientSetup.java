@@ -19,6 +19,7 @@ public class ClientSetup {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(ClientSetup::registerRenderers);
         modEventBus.addListener(ClientSetup::registerLayerDefinitions);
+        modEventBus.addListener(ClientEventHandler::onClientSetup);
     }
 
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {

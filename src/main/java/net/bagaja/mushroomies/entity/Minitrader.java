@@ -1,7 +1,10 @@
 package net.bagaja.mushroomies.entity;
 
+import net.bagaja.mushroomies.world.inventory.MinitraderMenu;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
@@ -9,7 +12,9 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.npc.AbstractVillager;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
@@ -21,7 +26,7 @@ import net.minecraft.server.level.ServerLevel;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class Minitrader extends AbstractVillager {
+public class Minitrader extends AbstractVillager implements MenuProvider {
     private final SimpleContainer inventory = new SimpleContainer(8);
 
     public Minitrader(EntityType<? extends AbstractVillager> entityType, Level level) {
@@ -43,10 +48,22 @@ public class Minitrader extends AbstractVillager {
             if (!this.level().isClientSide() && !this.getOffers().isEmpty()) {
                 this.setTradingPlayer(player);
                 this.openTradingScreen(player, this.getDisplayName(), 1);
+                return InteractionResult.sidedSuccess(true);
             }
             return InteractionResult.sidedSuccess(this.level().isClientSide());
         }
         return super.mobInteract(player, hand);
+    }
+
+    @Override
+    public Component getDisplayName() {
+        return Component.translatable("entity.mushroomies.minitrader");
+    }
+
+    @Override
+    @Nullable
+    public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
+        return new MinitraderMenu(id, player, this);
     }
 
     @Override

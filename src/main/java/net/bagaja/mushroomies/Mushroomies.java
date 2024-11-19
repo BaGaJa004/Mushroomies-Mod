@@ -4,8 +4,11 @@ import net.bagaja.mushroomies.client.ClientSetup;
 import net.bagaja.mushroomies.entity.MiniMushroomie;
 import net.bagaja.mushroomies.entity.MiniTransroomie;
 import net.bagaja.mushroomies.entity.Minitrader;
+import net.bagaja.mushroomies.registry.ModMenuTypes;
+import net.bagaja.mushroomies.world.inventory.MinitraderMenu;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -32,6 +35,8 @@ public class Mushroomies {
             ENTITY_TYPES.register("mini_mushroomie",
                     () -> EntityType.Builder.of(MiniMushroomie::new, MobCategory.CREATURE)
                             .sized(0.6f, 1.0f)
+                            .clientTrackingRange(8)  // Add this
+                            .updateInterval(3)       // Add this
                             .build(MOD_ID + ":mini_mushroomie"));
 
     public static final RegistryObject<EntityType<Minitrader>> MINITRADER =
@@ -65,7 +70,7 @@ public class Mushroomies {
 
         ENTITY_TYPES.register(modEventBus);
         ITEMS.register(modEventBus);
-
+        ModMenuTypes.MENU_TYPES.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientSetup::init);
     }

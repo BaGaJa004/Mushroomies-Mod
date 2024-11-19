@@ -38,3 +38,9 @@
 /tp @s 21152 70 203968
 /summon mushroomies:mini_transroomie
 /kill @e[ type= mushroomies:mini_mushroomie ]
+/kill @e[ type= mushroomies:mini_transroomie ]
+/tp Dev 40000 70 400000
+/locate biome minecraft:cherry_grove
+/tp @s 39808 70 400352
+/locate biome minecraft:mushroom_fields
+/tp @s 40644 124 400634

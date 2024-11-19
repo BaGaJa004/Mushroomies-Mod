@@ -4,6 +4,7 @@ import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
@@ -84,6 +85,7 @@ public class MiniMushroomie extends Animal {
         });
         this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+        this.moveControl = new MoveControl(this);
     }
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createMobAttributes()
@@ -95,4 +97,49 @@ public class MiniMushroomie extends Animal {
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
         return null; // Not breedable
     }
+
+    @Override
+    public boolean isPushable() {
+        return true;
+    }
+
+    @Override
+    protected void pushEntities() {
+        super.pushEntities();
+    }
+
+    @Override
+    public boolean canBeCollidedWith() {
+        return true;
+    }
 }
+
+// @Override
+//protected void defineSynchedData() {
+//    super.defineSynchedData();
+//}
+//
+//@Override
+//public void aiStep() {
+//    super.aiStep();
+//    if (this.level().isClientSide()) {
+//        // Update animation states only on client side
+//        this.updateAnimationStates();
+//    }
+//}
+//
+//private void updateAnimationStates() {
+//    if (this.isDancing) {
+//        this.walkAnimationState.stop();
+//        this.idleAnimationState.stop();
+//        this.danceAnimationState.startIfStopped(this.tickCount);
+//    } else if (this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-7D) {
+//        this.danceAnimationState.stop();
+//        this.idleAnimationState.stop();
+//        this.walkAnimationState.startIfStopped(this.tickCount);
+//    } else {
+//        this.danceAnimationState.stop();
+//        this.walkAnimationState.stop();
+//        this.idleAnimationState.startIfStopped(this.tickCount);
+//    }
+//}
