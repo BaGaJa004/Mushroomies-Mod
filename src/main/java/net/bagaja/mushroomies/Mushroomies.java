@@ -4,6 +4,7 @@ import net.bagaja.mushroomies.client.ClientSetup;
 import net.bagaja.mushroomies.entity.MiniMushroomie;
 import net.bagaja.mushroomies.entity.MiniTransroomie;
 import net.bagaja.mushroomies.entity.Minitrader;
+import net.bagaja.mushroomies.registry.ModBlocks;
 import net.bagaja.mushroomies.registry.ModMenuTypes;
 import net.bagaja.mushroomies.world.inventory.MinitraderMenu;
 import net.minecraft.world.entity.EntityType;
@@ -71,11 +72,13 @@ public class Mushroomies {
         ENTITY_TYPES.register(modEventBus);
         ITEMS.register(modEventBus);
         ModMenuTypes.MENU_TYPES.register(modEventBus);
+
+        ModBlocks.register(modEventBus); // Register the blocks
+
         MinecraftForge.EVENT_BUS.register(this);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientSetup::init);
     }
 }
 
 // changing trader inv design
-// adding mushroom wood
 // adding new houses for them

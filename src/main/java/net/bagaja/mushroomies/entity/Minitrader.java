@@ -1,5 +1,6 @@
 package net.bagaja.mushroomies.entity;
 
+import net.bagaja.mushroomies.registry.ModBlocks;
 import net.bagaja.mushroomies.world.inventory.MinitraderMenu;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
@@ -82,10 +83,10 @@ public class Minitrader extends AbstractVillager implements MenuProvider {
                 new ItemStack(Items.OAK_SAPLING, 1),
                 10, 2, 0.05F));
 
-        // Trade 32 brown mushrooms for 16 oak planks
+        // Trade 32 brown mushrooms for 16 mushroom wood planks
         offers.add(new MerchantOffer(
                 new ItemStack(Items.BROWN_MUSHROOM, 32),
-                new ItemStack(Items.OAK_PLANKS, 16),
+                new ItemStack(ModBlocks.MUSHROOM_WOOD_ITEM.get(), 16),
                 10, 2, 0.05F));
     }
 

@@ -1,5 +1,6 @@
 package net.bagaja.mushroomies;
 
+import net.bagaja.mushroomies.registry.ModBlocks;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -12,6 +13,9 @@ public class CreativeTabSetup {
         if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(Mushroomies.MINI_MUSHROOMIE_SPAWN_EGG);
             event.accept(Mushroomies.MINITRADER_SPAWN_EGG);
+        }
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(ModBlocks.MUSHROOM_WOOD_ITEM);
         }
     }
 }

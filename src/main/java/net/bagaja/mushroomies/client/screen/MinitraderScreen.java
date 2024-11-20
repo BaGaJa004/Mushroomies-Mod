@@ -10,7 +10,7 @@ import net.minecraft.client.gui.GuiGraphics;
 
 public class MinitraderScreen extends MerchantScreen {
     private static final ResourceLocation MINITRADER_GUI_TEXTURE =
-            new ResourceLocation(Mushroomies.MOD_ID, "textures/gui/container/trader_inventory.png");
+            new ResourceLocation(Mushroomies.MOD_ID, "textures/gui/container/villager.png");
 
     public MinitraderScreen(MerchantMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
